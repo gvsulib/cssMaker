@@ -10,6 +10,8 @@ I wrote cssMaker because I wanted to be able to save server requests and compres
 
 Edit the `config.sample.php` file, setting the `$auth_key` variable to the hash you just made. Save the file as `config.php` and save it in the same directory as cssMaker.
 
+Update line 14 of index.php to call `config.php` instead of `config.sample.php`.
+
 Now, upload the files to your server somewhere where you can execute them. (They should be on the same server you're going to store the CSS files you generate.)
 
 ### Usage
