@@ -8,30 +8,40 @@ The CSS files that populate the final product are set in order in css.json. To l
 repo at http://github.com/gvsulib/opac
 */
 
-include('config.php');
 
-$path = $_GET['path'];
-$key = $_GET['key'];
+if((isset($_GET['path'])) && (isset($_GET['key']))) {
+	
+	include('config.php');
+	
+	$path = $_GET['path'];
+	$key = $_GET['key'];
+	
+	if($key == $auth_key) {
 
-if($key == $auth_key) {
+		// Set initial variables
+		$prefs = "css.json";
+		$new_css = 'styles.css';
+		$i = 1;
 
-	// Set initial variables
-	$prefs = "css.json";
-	$new_css = 'styles.css';
-	$i = 1;
+		$full_path = $path . '/' . $prefs;
 
-	$full_path = $path . '/' . $prefs;
+		// Parse the preferences file
+		$json = json_decode(file_get_contents($prefs), true);
+		$count = count($json);
 
-	// Parse the preferences file
-	$json = json_decode(file_get_contents($prefs), true);
-	$count = count($json);
-
-	// Cycle through all the CSS files and add them to a single file
-	while($i <= $count) {
-		addStyles($i, $json[$i]);
-		$i++;
+		// Cycle through all the CSS files and add them to a single file
+		while($i <= $count) {
+			addStyles($i, $json[$i]);
+			$i++;
+		}
+	} else { // Key didn't match
+		echo 'That key did not work.';
 	}
+} else { // Missing Key or Path
+	
+	echo 'Looks like you are missing something.';
 }
+
 
 function addStyles($i, $path) {
 	
