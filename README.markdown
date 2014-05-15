@@ -23,13 +23,13 @@ cssMaker takes two parameters to run:
 
 The script then looks for a file called `css.json` in the target directory. This file should be a simple JSON file that specifies the order and URL of all the CSS files you want to add together. For instance, here is the css.json for my OPAC, where I have several files to load:
 
-	`{
+	{
 		"1":"http://gvsuliblabs.com/labs/opac/css/iii_stock.css",
 		"2":"http://gvsu.edu/cms3/skeleton_32/files/css/base.css",
 		"3":"http://gvsuliblabs.com/labs/opac/css/gvsu-nav.css",
 		"4":"http://gvsu.edu/cms3/assets/741ECAAE-BD54-A816-71DAF591D1D7955C/gvsu-lib-styles-new.css",
 		"5":"http://gvsuliblabs.com/labs/opac/css/iii_custom.css"
-	}`
+	}
 
 Here I am loading 2 stylesheets from the GVSU server, a file I created to replace the inlined navigation-related styles from my campus CMS, the stock CSS provided by the OPAC vendor, and the custom styles I wrote to modify the OPAC.
 
