@@ -35,7 +35,7 @@ Here I am loading 2 stylesheets from the GVSU server, a file I created to replac
 
 I would call cssMaker through any HTTP request like this:
 
-	`http://PATH/TO/CSSMAKER/cssMaker?key=2346ad27d7568ba9896f1b7da6b5991251debdf2&path=/PATH/TO/OPAC/CSS`
+	http://PATH/TO/CSSMAKER/cssMaker?key=2346ad27d7568ba9896f1b7da6b5991251debdf2&path=/PATH/TO/OPAC/CSS
 
 The script will then parse the css.json file it finds in that directory, and based on the numerical order will begin ingesting the CSS files and then compressing them, finally outputting a file that has all of your CSS files, compressed and in order, at `styles.css`.
 
