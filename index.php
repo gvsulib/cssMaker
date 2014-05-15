@@ -11,7 +11,7 @@ repo at http://github.com/gvsulib/opac
 
 if((isset($_GET['path'])) && (isset($_GET['key']))) {
 	
-	include('config.php');
+	include('config.sample.php');
 	
 	$path = $_GET['path'];
 	$key = $_GET['key'];
@@ -20,13 +20,13 @@ if((isset($_GET['path'])) && (isset($_GET['key']))) {
 
 		// Set initial variables
 		$prefs = "css.json";
-		$new_css = 'styles.css';
+		$new_css = $path . '/styles.css';
 		$i = 1;
 
 		$full_path = $path . '/' . $prefs;
 
 		// Parse the preferences file
-		$json = json_decode(file_get_contents($prefs), true);
+		$json = json_decode(file_get_contents($full_path), true);
 		$count = count($json);
 
 		// Cycle through all the CSS files and add them to a single file
@@ -34,6 +34,9 @@ if((isset($_GET['path'])) && (isset($_GET['key']))) {
 			addStyles($i, $json[$i]);
 			$i++;
 		}
+		
+		echo 'Your shiny new CSS file is ready.';
+		
 	} else { // Key didn't match
 		echo 'That key did not work.';
 	}
@@ -43,13 +46,13 @@ if((isset($_GET['path'])) && (isset($_GET['key']))) {
 }
 
 
-function addStyles($i, $path) {
+function addStyles($i, $url) {
 	
 	// Add new styles to iii.css document
 
 	global $new_css;
 
-	$css = compress(file_get_contents($path));
+	$css = compress(file_get_contents($url));
 	
 	if($i == 1) { // Erase existing file
 	
