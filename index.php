@@ -52,7 +52,9 @@ function addStyles($i, $url) {
 
 	global $new_css;
 
-	$css = compress(file_get_contents($url));
+	$css_file .= compress(file_get_contents($url));
+	$css = '/* ' . $url . '*/ ' . $css_file;
+
 	
 	if($i == 1) { // Erase existing file
 	
