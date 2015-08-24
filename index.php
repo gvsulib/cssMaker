@@ -59,10 +59,13 @@ function addStyles($i, $url) {
 	if($i == 1) { // Erase existing file
 	
 		file_put_contents ($new_css, $css);
+		echo 'Added ' . $url . '<br />';
 	
 	} else { // Append to file
 	
 		file_put_contents ($new_css, $css, FILE_APPEND);
+		echo 'Added ' . $url . '<br />';
+
 	}
 }
 
