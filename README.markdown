@@ -47,4 +47,4 @@ Every time you run cssMaker it overwrites the `styles.css` file in your target d
 
 ### Questions?
 
-Drop me a line at [reidsmam@gvsu.edu](mailto:reidsmam@gvsu.edu) or [@mreidsma](http://twitter.com/mreidsma). Or submit an issue or a pull request.
+Drop me a line at [reidsmam@gvsu.edu](mailto:reidsmam@gvsu.edu). Or submit an issue or a pull request.
