@@ -11,7 +11,7 @@ repo at http://github.com/gvsulib/opac
 
 if((isset($_GET['path'])) && (isset($_GET['key']))) {
 	
-	include('config.sample.php');
+	include('config.php');
 	
 	$path = $_GET['path'];
 	$key = $_GET['key'];
