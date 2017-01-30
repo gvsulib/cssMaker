@@ -15,6 +15,12 @@ if((isset($_GET['path'])) && (isset($_GET['key']))) {
 	
 	$path = $_GET['path'];
 	$key = $_GET['key'];
+
+	if(is_writeable($path)) {
+		echo 'Checking permissions ... okay';
+	} else {
+		echo 'You do not have permission to write to this directory.'; die;
+	}
 	
 	if($key == $auth_key) {
 
