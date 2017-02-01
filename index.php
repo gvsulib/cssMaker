@@ -73,6 +73,7 @@ function addStyles($i, $url) {
 	global $new_css;
 
 	$css_file .= compress(file_get_contents($url));
+echo $css_file;
 	$css = '/* ' . $url . '*/ ' . $css_file;
 
 	
