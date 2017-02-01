@@ -8,20 +8,6 @@ The CSS files that populate the final product are set in order in css.json. To l
 repo at http://github.com/gvsulib/opac
 */
 
-// This function by Reinhold Weber, cited at http://www.catswhocode.com/blog/3-ways-to-compress-css-files-using-php
-// Compress CSS on the fly
-
-function compress($buffer) {
-	
-    // Remove comments
-    $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
-
-    // Remove tabs, spaces, newlines, etc.
-    $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
-
-    return $buffer;
- }
-
 
 if((isset($_GET['path'])) && (isset($_GET['key']))) {
 	
@@ -50,10 +36,15 @@ if((isset($_GET['path'])) && (isset($_GET['key']))) {
 		$count = count($json);
 
 		// Cycle through all the CSS files and add them to a single file
+
+		$new_styles = fopen($new_css, "w");		
+
 		while($i <= $count) {
 			addStyles($i, $json[$i]);
 			$i++;
 		}
+
+		fclose($new_styles);
 		
 		echo 'Your shiny new CSS file is ready.';
 		
@@ -70,26 +61,28 @@ function addStyles($i, $url) {
 	
 	// Add new styles to iii.css document
 
-	global $new_css;
+	global $new_styles;
 
 	$css_file .= compress(file_get_contents($url));
-echo $css_file;
 	$css = '/* ' . $url . '*/ ' . $css_file;
 
+	fwrite ($new_styles, $css);
+	echo 'Added ' . $url . '<br />';
 	
-	if($i == 1) { // Erase existing file
-	
-		file_put_contents ($new_css, $css);
-		echo 'Added ' . $url . '<br />';
-	
-	} else { // Append to file
-	
-		file_put_contents ($new_css, $css, FILE_APPEND);
-		echo 'Added ' . $url . '<br />';
-
-	}
 }
 
+// This function by Reinhold Weber, cited at http://www.catswhocode.com/blog/3-ways-to-compress-css-files-using-php
+// Compress CSS on the fly
 
+function compress($buffer) {
+	
+    // Remove comments
+    $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
+
+    // Remove tabs, spaces, newlines, etc.
+    $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
+
+    return $buffer;
+ }
 
 
