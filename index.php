@@ -8,6 +8,20 @@ The CSS files that populate the final product are set in order in css.json. To l
 repo at http://github.com/gvsulib/opac
 */
 
+// This function by Reinhold Weber, cited at http://www.catswhocode.com/blog/3-ways-to-compress-css-files-using-php
+// Compress CSS on the fly
+
+function compress($buffer) {
+	
+    // Remove comments
+    $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
+
+    // Remove tabs, spaces, newlines, etc.
+    $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
+
+    return $buffer;
+ }
+
 
 if((isset($_GET['path'])) && (isset($_GET['key']))) {
 	
@@ -75,18 +89,6 @@ function addStyles($i, $url) {
 	}
 }
 
-// This function by Reinhold Weber, cited at http://www.catswhocode.com/blog/3-ways-to-compress-css-files-using-php
-// Compress CSS on the fly
 
-function compress($buffer) {
-	
-    // Remove comments
-    $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
-
-    // Remove tabs, spaces, newlines, etc.
-    $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
-
-    return $buffer;
- }
 
 
